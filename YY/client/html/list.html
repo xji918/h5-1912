@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .box {
+            width: 1300px;
+            height: 100%;
+            /* border: 1px solid #000; */
+            margin: 10px auto;
+        }
+
+        .header,
+        .footer {
+            width: 100%;
+        }
+
+        .header img,
+        .footer img {
+            width: 100%;
+        }
+
+        .box-list {
+            width: 100%;
+            height: 500px;
+        }
+
+        /* .btn-class {
+      width: 400px;
+      height: 30px;
+      border: 1px solid #000;
+  } */
+
+        .btn-class span {
+            width: 150px;
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid #000;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .item {
+            width: 200px;
+            margin: 7px 17px;
+            padding: 10px;
+            height: 378px;
+            border: solid 3px transparent;
+            float: left;
+        }
+
+        .item:hover {
+            border-color: #CCC;
+        }
+
+        .item-box {
+            /* text-align: center */
+        }
+
+        .item img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .price {
+            margin-bottom: 5px;
+            margin-top: 5px;
+            font-size: 14px;
+            color: red;
+        }
+
+        .title {
+            width: 200px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            -webkit-line-clamp: 2;
+            height: 30px;
+            margin-top: 5px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            color: var(--color-link);
+            transition: color .1s ease;
+            display: -webkit-box;
+            touch-action: manipulation;
+
+        }
+
+        .dis {
+            color: #9c9c9c;
+        }
+
+        .storeName {
+            margin-top: 5px;
+        }
+
+        .page {
+            /* position: fixed; */
+            /* bottom: 0px; */
+            width: 1130px;
+            margin: 40px auto;
+            /* margin-top: 100px; */
+            /* background: #195; */
+            text-align: center;
+            /* font-size: 13px; */
+            font-family: Verdana;
+            padding: 10px 16px
+        }
+
+        .page a {
+            display: inline-block;
+            height: 20px;
+            padding: 0 7px;
+            border: #CCC solid 1px;
+            /* font: 12px/20px Verdana; */
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: 5px;
+            background: #FFF
+        }
+
+        .page a:hover {
+            background: #09F;
+            color: #FFF;
+            /* border-color: #09F */
+        }
+
+        .page .active {
+            background: #CCC
+        }
+
+        .page a:active {
+            opacity: .8
+        }
+    </style>
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/list.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="../img/微信图片_20191216200641.png" alt="">
+    </div>
+    <div class="box">
+        <div class="btn-class">
+            <span class="typeBtn" data-type="default">默认</span>
+            <span class="typeBtn" data-type="desc">按照价格从高到低</span>
+            <span class="typeBtn" data-type="asc">按照价格从低到高</span>
+        </div>
+        <ul class="box-list"></ul>
+    </div>
+    <div id="page" class="page">
+        <!-- <a href="javascript:;" class="active">1</a>
+        <a href="javascript:;">2</a>
+        <a href="javascript:;">3</a> -->
+    </div>
+    <div class="footer">
+        <img src="../img/img_bottom_02.jpg" alt="">
+    </div>
+</body>
+
+</html>

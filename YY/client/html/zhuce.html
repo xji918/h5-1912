@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/zhuce.css">
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/captcha.js"></script>
+    <script src="../lib/zhuce.js"></script>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="log_head">
+            <h1 class="log_logo">
+                <a href="./shouye.html">
+                    <img src="https://www.yaya.cn/static/images/yaya.png" width="113" height="50">
+                    <span>新用户注册</span>
+                </a>
+            </h1>
+        </div>
+        <div class="login_wrap">
+            <div class="zhuce-tab">
+                <ul>
+                    <li class="xz">快速注册</li>
+                    <li>账号注册</li>
+                </ul>
+            </div>
+            <div class="regtip">已有丫丫网账号？现在就
+                <a href="./denglu.html" class="orange-bg">登录</a>
+            </div>
+            <div class="xxknr">
+                <div class="reg" style="display: block;">
+                    <dl>
+                        <dt><i>*</i>手机号码</dt>
+                        <dd>
+                            <input type="text" id="usermobile"><em>手机号码非常重要，找回密码及购物都会用到</em></dd>
+                    </dl>
+                    <dl id="codedl" style="display: block;">
+                        <dt><i>*</i>验证码</dt>
+                        <dd>
+                            <input type="text" id="yzmcode" style="width: 120px;">
+                            <img id="vCodeImg" src="" width="80" height="30"><a>看不清楚？换一张</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i>*</i>短信验证码</dt>
+                        <dd>
+                            <input type="text" id="phonecode" style="width: 120px;"><a class="btn" id="getCode">
+                                <span id="dyMobileButton">获取短信验证码</span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <input name="" id="mmprovision" type="checkbox" checked="checked"
+                                style="margin-right: 5px; vertical-align: middle;"><label for="mmprovision"
+                                style="color: #999;">我已认真阅读并同意<a target="_blank"
+                                    style="color: #39f; margin: 0 5px;">《丫丫网用户协议》</a></label></dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <button onclick="Register()" id="regbut">提交注册</button></dd>
+                    </dl>
+                </div>
+                <div class="reg" style="display: none;">
+                    <dl>
+                        <dt><i>*</i>用户名</dt>
+                        <dd>
+                            <input type="text" id="userUID"><em>4-16位字母、数字或汉字，请不要输入特殊字符！</em>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                用户名不规范
+                            </article>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i>*</i>密码</dt>
+                        <dd>
+                            <input type="password" id="userpwd3"><em>6个字符以上的字母或数字</em>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                请输入正确的密码
+                            </article>
+                        </dd>
+
+                    </dl>
+                    <dl>
+                        <dt><i>*</i>重复密码</dt>
+                        <dd>
+                            <input type="password" id="userpwd4"><em>请重复输入密码确认不会输错</em>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                两次输入的密码不一致
+                            </article>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><i>*</i>手机号码</dt>
+                        <dd>
+                            <input type="text" id="usermobile2"><em>手机号码非常重要，找回密码及购物都会用到</em>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                请输入正确的手机号码
+                            </article>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>邮箱地址</dt>
+                        <dd>
+                            <input type="text" id="usermail"><em>请填写邮箱，用于找回密码</em>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                请输入正确的邮箱地址
+                            </article>
+                        </dd>
+                    </dl>
+                    <dl id="codedl2">
+                        <dt>验证码</dt>
+                        <dd>
+                            <input type="text" id="yzmcode2" style="width: 120px;">
+                            <canvas id="canvas2" width="80" height="30"
+                                style="margin: 0 10px; vertical-align: -10px;"></canvas>看不清楚？换一张</a>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 220px;">
+                                请输入正确的验证码
+                            </article>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><i>*</i>短信验证码</dt>
+                        <dd>
+                            <input type="text" id="phonecode2" style="width: 120px;"><a class="btn" id="getCode2">
+                                <span id="dyMobileButton2">获取短信验证码</span></a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <input name="" id="mmprovision2" type="checkbox" checked="checked"
+                                style="margin-right: 5px; vertical-align: middle;"><label for="mmprovision"
+                                style="color: #999;">我已认真阅读并同意<a class="showyhzt"
+                                    style="color: #39f; margin: 0 5px;">《丫丫网用户协议》</a></label>
+                            <article
+                                style="padding: 0 5px;color:#fff;font-size:14px;line-height:48px;height: 48px;background: orange;position: absolute;border-radius: 5px;top: 50%;margin-top:-24px;left: 242px;">
+                                请仔细阅读用户协议
+                            </article>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <button id="regbut2">提交注册</button></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="../img/img_bottom_02.jpg" alt="">
+    </div>
+</body>
+
+</html>
