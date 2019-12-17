@@ -136,13 +136,13 @@ $(() => {
         createhtml() {
             let html = this.data.map((ele, index) => {
                 var res = ele
-                let html5 = ele.right.map((ie) => `<a href=""><img src="${ie}"></a>`).join("");
+                let html5 = ele.right.map((ie) => `<a href="./list.html"><img src="${ie}"></a>`).join("");
                 let html4 = ele.left.map((item) => {
-                    let html4_1 = item.des.map((ev) => `<a href="">${ev}</a>`).join("");
+                    let html4_1 = item.des.map((ev) => `<a href="./list.html">${ev}</a>`).join("");
                     return `<div class="nav-menu-item"><h4 class="orange">${item.title}</h4><p>${html4_1}</p></div>`;
                 }).join("");
-                let html3 = ele.leftbottom.map((eles) => `<a href="">${eles}</a>`).join("");
-                let html2 = `<dt class="odt"><b><i></i><a href="">${ele.lefttop}</a></b><span>${html3}</span></dt><dd class="odd"><div class="left">${html4}</div><div class="right"><div class="menu_ad">${html5}</div></div></dd>`;
+                let html3 = ele.leftbottom.map((eles) => `<a href="./list.html">${eles}</a>`).join("");
+                let html2 = `<dt class="odt"><b><i></i><a href="./list.html">${ele.lefttop}</a></b><span>${html3}</span></dt><dd class="odd"><div class="left">${html4}</div><div class="right"><div class="menu_ad">${html5}</div></div></dd>`;
                 return `<dl class="odl">${html2}</dl>`;
             }).join("");
             return html

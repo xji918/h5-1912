@@ -725,25 +725,25 @@
     </div>
 
     <script>
-        var olis = document.querySelector("#app > div.wrapper.view > div.flex.flex-justify-between > div.right-side > div.list > ul").children;
-        var listdata = [];
-        for (var i = 0; i < olis.length; i++) {
-            var o = {
-                src: "",
+        // var olis = document.querySelector("#app > div.wrapper.view > div.flex.flex-justify-between > div.right-side > div.list > ul").children;
+        // var listdata = [];
+        // for (var i = 0; i < olis.length; i++) {
+        //     var o = {
+        //         src: "",
 
-                title: "",
+        //         title: "",
 
-                price: "",
-                dis: "",
-                Top: "",
-            };
-            o.src = olis[i].querySelector(" div.sku-color.flex.mt-5.overflow-hide > a.flex-child-noshrink.cur > img") ? olis[i].querySelector(" div.sku-color.flex.mt-5.overflow-hide > a.flex-child-noshrink.cur > img").src : "";
-            o.title = olis[i].querySelector(" a.lines-2.mt-5") ? olis[i].querySelector(" a.lines-2.mt-5").getAttribute("title") : "";
-            o.price = olis[i].querySelector(" div.price.mt-5.mb-5.flex > span > b").innerText;
-            o.dis = olis[i].querySelector(" p").innerText;
-            o.Top = olis[i].querySelector(" a.mt-5.flex.flex-align-center.flex-justify-between > span") ? olis[i].querySelector(" a.mt-5.flex.flex-align-center.flex-justify-between > span").innerText : "";
-            listdata.push(o)
-        }
+        //         price: "",
+        //         dis: "",
+        //         Top: "",
+        //     };
+        //     o.src = olis[i].querySelector(" div.sku-color.flex.mt-5.overflow-hide > a.flex-child-noshrink.cur > img") ? olis[i].querySelector(" div.sku-color.flex.mt-5.overflow-hide > a.flex-child-noshrink.cur > img").src : "";
+        //     o.title = olis[i].querySelector(" a.lines-2.mt-5") ? olis[i].querySelector(" a.lines-2.mt-5").getAttribute("title") : "";
+        //     o.price = olis[i].querySelector(" div.price.mt-5.mb-5.flex > span > b").innerText;
+        //     o.dis = olis[i].querySelector(" p").innerText;
+        //     o.Top = olis[i].querySelector(" a.mt-5.flex.flex-align-center.flex-justify-between > span") ? olis[i].querySelector(" a.mt-5.flex.flex-align-center.flex-justify-between > span").innerText : "";
+        //     listdata.push(o)
+        // }
     </script>
 
 </body>

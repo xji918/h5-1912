@@ -1,4 +1,8 @@
 $(() => {
+    $(".header img").click(function () {
+        window.location.href = "./shouye.html"
+    })
+
 
     let typeVal = "default";
     /* 先获取第一页数据，成功之后再获取页码 */
@@ -49,7 +53,7 @@ $(() => {
     /* 渲染页面 */
     function renderUI(_data) {
         let html = _data.map((ele, index) => {
-            return `<li class="item">
+            return `<li class="item " data-top="${ele.id}">
                     <div class="item-box">
                         <img src=${ele.src}>
                         <div class="title ">${ele.title}</div>
@@ -72,6 +76,12 @@ $(() => {
         typeVal = $(this).data("type");
         getDataWithPageCount(1, typeVal);
         $("#page a").eq(0).addClass("active").siblings().removeClass("active");
+    })
+    $(".box-list").on("click", ".item", function () {
+        let top = $(this).data("top");
+        top = "top=" + top;
+        console.log("./xiangqing.html?" + top);
+        window.location.href = "./xiangqing.html?" + top;
     })
 });
 

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+        }
+
+        .header {
+            width: 100%;
+            height: 185px;
+        }
+
+        .header a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header a img {
+            width: 100%;
+        }
+
+        .body {
+            width: 1200px;
+            margin: 20px auto;
+        }
+
+        /* 放大镜 */
+        .big_box {
+            width: 440px;
+            position: relative;
+            float: left;
+        }
+
+        .min_box {
+            width: 438px;
+            height: 440px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        .min_box img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .min_box .zzhao {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 0, 0, .3);
+            z-index: 2;
+            display: none;
+        }
+
+        .max_box {
+            width: 300px;
+            height: 360px;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            border: 1px solid red;
+            overflow: hidden;
+            display: none;
+            z-index: 99;
+        }
+
+        .max_box img {
+            width: 675px;
+            height: 450px;
+            display: none;
+            position: absolute;
+        }
+
+        .tab_img {
+            height: 72px;
+            padding: 0 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .tab_img img {
+            float: left;
+            width: 50px;
+            height: 50px;
+            margin: 15px 0 0 15px;
+            border: 1px solid #eee;
+        }
+
+        /* 详情 */
+        .xq {
+            width: 700px;
+            float: left;
+            padding: 0 20px 50px 0;
+            margin-left: 20px;
+            border-bottom: 1px solid #bbb;
+        }
+
+        .xq .xq_top .title {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .xq .xq_top .dis {
+            font-size: 12px;
+            height: 36px;
+            color: #f9b548;
+            margin: 10px 0;
+        }
+
+        .xq .xq_mian {
+            background: #f5f5f5;
+            line-height: 36px;
+            padding: 0 10px;
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+        .xq .xq_mian .price span {
+            margin-right: 10px;
+        }
+
+        .xq .xq_mian .price {
+            /* float: left; */
+        }
+
+        .xq .xq_mian .price .priceA {
+            color: red;
+            font-size: 20px;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+
+        .xq .xq_mian a:hover {
+            text-decoration: underline
+        }
+
+        .xq .xq_mian ul {
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            padding: 10px 0;
+
+        }
+
+        .xq .xq_mian ul li {
+            float: left;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .xq .xq_mian ul li article {
+            color: #bbb;
+            height: 18px;
+            line-height: 18px;
+        }
+
+        .xq .xq_mian ul li:nth-child(2) {
+            border-left: 1px solid #bbb;
+            border-right: 1px solid #bbb;
+        }
+
+        .xq .xq_bottom {
+            padding: 0 10px;
+            line-height: 36px;
+        }
+
+        .xq .xq_bottom .phonecolor_box {
+
+            overflow: hidden;
+        }
+
+        .xq .xq_bottom .phonecolor_box div {
+            float: left;
+        }
+
+        .xq .xq_bottom .phonecolor_box div .phonecolor {
+            align-items: center;
+            padding: 0 10px 0 40px;
+            height: 36px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #cccccc;
+            cursor: pointer;
+            float: left;
+        }
+
+        .footer {
+            width: 100%;
+        }
+
+        .footer img {
+            width: 100%;
+        }
+    </style>
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/xiangqing.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <a href="shouye.html">
+            <img src="../img/微信图片_20191216200641.png" alt="">
+        </a>
+    </div>
+    <div class="body">
+        <div class="big_box"></div>
+        <div class="xq"></div>
+    </div>
+    <div class="footer">
+        <img src="https://img2.yaya.cn/pic/edt/product/20191015/20191015193346_5868.jpg.webp" alt="">
+    </div>
+</body>
+
+</html>
