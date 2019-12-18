@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/shoppingcart.css">
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/shoppingcart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            width: 100%;
+        }
+
+        .header img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="../img/QQ图片20191218095837.png" alt="">
+    </div>
+    <div class="bodyer">
+        <div class="bodyer_top">
+            <div class="top_left">
+                <span>全部商品 </span><span class="num1">5</span>
+            </div>
+            <div class="top_right">
+                <div>已选 <span class="num2">15</span> 件，合计（不含运费）<span style="color: red;font-weight: 600;">￥</span><span
+                        class="num3" style="font-weight: 600;">188702.00</span></div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="main_top">
+                <div class="check">
+                    <input type="checkbox" id="checkbocAll">
+                    <label for="" class="checkbox">全选</label>
+                </div>
+                <div class="shangpinA">商品</div>
+                <div class="priceA">单价 （元）</div>
+                <div class="youhui">优惠 （元）</div>
+                <div class="number">数量</div>
+                <div class="numA">小计 （元）</div>
+                <div class="caozuo">操作</div>
+            </div>
+
+        </div>
+
+        <div class="bottom">
+            <div class="bottom_left">
+                <div class="check">
+                    <input type="checkbox" id="checkbocAll2">
+                    <label for="" class="checkbox">全选</label>
+                </div>
+                <a href="" class="celar clicks" data-type="celar">删除</a>
+            </div>
+            <div class="bottom_right">
+                <div class="bottom_right_1">
+                    已选商品
+                    <span class="num2" style="color: red;font-size: 16px;">35</span>
+                    件
+                    <span style="margin-left: 20px;">总计（不含运费）：</span>
+                    <span style="color: red;font-size: 18px;font-weight: 600;">￥</span>
+                    <span class="num3"
+                        style="color: red;margin-right: 20px;font-size: 18px;font-weight: 600;">189682.00</span>
+                </div>
+                <div class="close">结算</div>
+            </div>
+        </div>
+    </div>
+    <div class="tishi">
+        <div class="tishi_A">
+            <div>是否要删除该商品?</div>
+            <span>确定</span><span>取消</span>
+        </div>
+
+    </div>
+    <div class="footer"></div>
+</body>
+
+</html>

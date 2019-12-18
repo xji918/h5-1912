@@ -19,7 +19,7 @@ $(() => {
         createHTML() {
             let html1 = `<div class="min_box"><img src="" alt=""><div class="zzhao"></div></div>`;
             let html2 = `<div class="max_box"><img src="" alt=""></div>`;
-            let html3 = `<div class="tab_img"><img src="${this.data[0].srca}" alt=""><img src="${this.data[0].srcb}" alt="">
+            let html3 = `<div class="tab_img"><img id="${this.data[0].id}" src="${this.data[0].srca}" alt=""><img src="${this.data[0].srcb}" alt="">
             <img src="${this.data[0].srcc}" alt=""><img src="${this.data[0].srcd}" alt=""></div>`;
             let html4 = html1 + html2 + html3;
             return html4
@@ -204,6 +204,27 @@ $(() => {
         }
     });
 
+    //购物车
+    $(".spcart").on("click", ".shoppingcart", function () {
+        let type = $(this).data("type");
+        let src = $(".tab_img > img")[0].src;
+        let price = $(".priceA").eq(0).text().slice(1);
+        let dis = $(".xq_top > .title").eq(0).text();
+        let top = $(".tab_img > img").eq(0).attr("id");
+        console.log(type);
+        console.log(top);
+
+        $.ajax({
+            type: "get",
+            url: "../../server/shoppingcart2.php",
+            data: "type=" + type + "&top=" + top + "&src=" + src + "&price=" + price + "&dis=" + dis,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+
+            }
+        });
+    })
 
 
 })
