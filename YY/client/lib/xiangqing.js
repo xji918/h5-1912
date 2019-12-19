@@ -1,5 +1,35 @@
 $(() => {
-
+    let a1 = decodeURI(window.location.search.slice(1));
+    function queryString2Obj(queryString) {
+        var o = {};
+        var arr = queryString.split("&"); //["name=zs","age=10","className=H5"];
+        arr.forEach(function (item) {
+            var data = item.split("="); //["name","zs"];
+            var key = data[0];
+            var val = data[1];
+            o[key] = val;
+        })
+        return o;
+    };
+    var arr = queryString2Obj(a1);
+    console.log(a1);
+    console.log(arr);
+    $.ajax({
+        type: "get",
+        url: "../../server/shoppingcart3.php",
+        data: "userid=" + arr.userid + "&username=" + arr.username,
+        dataType: "json",
+        success: function (response) {
+            $(".shoppingcartB span").text(cart(response))
+        }
+    });
+    function cart(data) {
+        let numbers = 0;
+        $(data).each(function (index, ele) {
+            numbers = ele.num * 1 + numbers
+        });
+        return numbers
+    }
 
     class Fdj {
         constructor(data) {
@@ -180,26 +210,30 @@ $(() => {
                     success: function (response) {
                         let fdjs2 = new Fdj(response);
                         fdjs2.init();
+
+
                     }
                 });
+            });
+            $(".shoppingcartB").click(function () {
+                window.location.href = "../html/shoppingcart.html?userid=" + arr.userid + "&username=" + arr.username;
             })
         }
     };
-    let o = window.location.search.slice(1).split("=");
-    let top;
-    for (var key in o) {
-        top = o[key]
-    }
-    console.log(top);
+    // let o = window.location.search.slice(1).split("=");
+    // let top;
+    // for (var key in o) {
+    //     top[key] = o[key]
+    // }
+    console.log(arr.top);
     $.ajax({
         type: "get",
         url: "../../server/xiangqing1.php",
-        data: "id=" + top,
+        data: "id=" + arr.top,
         dataType: "json",
         success: function (response) {
             let fdjs = new Fdj(response);
             fdjs.init();
-            //点击发送请求
 
         }
     });
@@ -213,15 +247,14 @@ $(() => {
         let top = $(".tab_img > img").eq(0).attr("id");
         console.log(type);
         console.log(top);
-
         $.ajax({
             type: "get",
             url: "../../server/shoppingcart2.php",
-            data: "type=" + type + "&top=" + top + "&src=" + src + "&price=" + price + "&dis=" + dis,
+            data: "type=" + type + "&top=" + top + "&src=" + src + "&price=" + price + "&dis=" + dis + "&userid=" + response.id + "&username=" + response.username + "userid=" + arr.userid + " &username=" + arr.username,
             dataType: "json",
             success: function (response) {
                 console.log(response);
-
+                $(".shoppingcartB span").text(cart(response))
             }
         });
     })

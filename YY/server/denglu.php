@@ -9,7 +9,7 @@ $password = $_REQUEST["password"];
 $sql1 = "SELECT * FROM user WHERE username='$username'";
 $result1 = mysqli_query($db, $sql1);
 
-$data = array("status" => "", "data" => array("msg" => ""));
+$data = array("status" => "", "username" => "", "id" => "", "data" => array("msg" => ""));
 
 if (mysqli_num_rows($result1) == 0) {
     # (2-1) 如果不存在，那么就返回数据(登录失败，用户名不存在)
@@ -61,6 +61,8 @@ if (mysqli_num_rows($result1) == 0) {
     $sql2 = "SELECT * FROM user WHERE username='$username'";
     $res = mysqli_query($db, $sql2);
     $res = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    $username = $res[0]["username"];
+    $id = $res[0]["id"];
     $res = $res[0]["password"];
     if ($password !=  $res) {
         # (2-2-1) 密码不正确，那么就返回数据(登录失败，密码错误)
@@ -69,6 +71,8 @@ if (mysqli_num_rows($result1) == 0) {
     } else {
         # (2-2-2) 密码正确，那么就返回数据(登录成功)
         $data["status"] = "success";
+        $data["username"] =  $username;
+        $data["id"] =  $id;
         $data["data"]["msg"] = "恭喜你，登录成功";
     }
 }

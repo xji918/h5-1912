@@ -56,7 +56,7 @@ a{
 }
 
 .bodyer .bodyer_top .top_right .num2{
-    color: #f9b548;
+    color: rgb(249, 181, 72);
 }
 
 .bodyer .bodyer_top .top_right .num3{
@@ -74,6 +74,7 @@ a{
 .bodyer .main .main_top{
     padding:  0 5px;
     line-height: 50px;
+    
 }
 
 .bodyer .main .main_top .check input{
@@ -245,4 +246,8 @@ a{
 
 .tishi_block{
     display: block; 
+}
+
+.btn_color{
+    color: #f9b548;
 }

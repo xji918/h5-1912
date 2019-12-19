@@ -12,7 +12,7 @@ $(() => {
             dataType: "json",
             success: function (response) {
                 if (response.status == "success") {
-                    window.location.href = "./shouye.html";
+                    window.location.href = "./shouye.html?userid=" + response.id + "&username=" + response.username;
                 } else {
                     alert(response.data.msg)
                 }

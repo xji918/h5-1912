@@ -1,4 +1,20 @@
 $(() => {
+    let a1 = decodeURI(window.location.search.slice(1));
+    function queryString2Obj(queryString) {
+        var o = {};
+        var arr = queryString.split("&"); //["name=zs","age=10","className=H5"];
+        arr.forEach(function (item) {
+            var data = item.split("="); //["name","zs"];
+            var key = data[0];
+            var val = data[1];
+            o[key] = val;
+        })
+        return o;
+    };
+    var arr = queryString2Obj(a1);
+    console.log(a1);
+    console.log(arr);
+
     //top
     $(".top-user").hover(function () {
         $(".top-user-show").slideDown();
@@ -132,17 +148,18 @@ $(() => {
         init() {
             $(`<div class="nav-menu">${this.createhtml()}</div>`).appendTo(".homebox");
             this.mouseenter();
+            this.click();
         }
         createhtml() {
             let html = this.data.map((ele, index) => {
-                var res = ele
-                let html5 = ele.right.map((ie) => `<a href="./list.html"><img src="${ie}"></a>`).join("");
+
+                let html5 = ele.right.map((ie) => `<a><img src="${ie}"></a>`).join("");
                 let html4 = ele.left.map((item) => {
-                    let html4_1 = item.des.map((ev) => `<a href="./list.html">${ev}</a>`).join("");
+                    let html4_1 = item.des.map((ev) => `<a>${ev}</a>`).join("");
                     return `<div class="nav-menu-item"><h4 class="orange">${item.title}</h4><p>${html4_1}</p></div>`;
                 }).join("");
-                let html3 = ele.leftbottom.map((eles) => `<a href="./list.html">${eles}</a>`).join("");
-                let html2 = `<dt class="odt"><b><i></i><a href="./list.html">${ele.lefttop}</a></b><span>${html3}</span></dt><dd class="odd"><div class="left">${html4}</div><div class="right"><div class="menu_ad">${html5}</div></div></dd>`;
+                let html3 = ele.leftbottom.map((eles) => `<a>${eles}</a>`).join("");
+                let html2 = `<dt class="odt"><b><i></i><a>${ele.lefttop}</a></b><span>${html3}</span></dt><dd class="odd"><div class="left">${html4}</div><div class="right"><div class="menu_ad">${html5}</div></div></dd>`;
                 return `<dl class="odl">${html2}</dl>`;
             }).join("");
             return html
@@ -165,6 +182,12 @@ $(() => {
                 $(this).css("color", "#cfcfcf")
             })
         }
+        click() {
+
+            $(".odl a").click(function () {
+                window.location.href = "./list.html?userid=" + arr.userid + "&username=" + arr.username;
+            })
+        }
     };
     //登录注册
     class dlzc {
@@ -178,9 +201,6 @@ $(() => {
         css() {
             let dlright = $(".banner_bg_box")[0].offsetLeft - $(".side_box").width();
             $(".side_box").css("right", dlright);
-        }
-        click() {
-
         }
     };
     let dl = new dlzc();
@@ -427,13 +447,33 @@ $(() => {
         })
         .then(function () {
             //好货
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    type: "get",
+                    url: "../../server/haohuodata.php",
+                    dataType: "json",
+                    success: function (response) {
+                        let haoh = new Hh(response);
+                        haoh.init();
+                        resolve();
+                    }
+                });
+            })
+        })
+        .then(function () {
+            //cart
             $.ajax({
                 type: "get",
-                url: "../../server/haohuodata.php",
+                url: "../../server/shoppingcart3.php",
+                data: "userid=" + arr.userid + "&username=" + arr.username,
                 dataType: "json",
                 success: function (response) {
-                    let haoh = new Hh(response);
-                    haoh.init();
+                    let numbers = 0;
+                    $(response).each(function (index, ele) {
+                        numbers = ele.num * 1 + numbers
+                    });
+                    $(".header-cart > .header-cart-a > span").text(numbers);
+                    $(".tool-bar > .tool-bar-menu > .tool-cart b").text(numbers)
                 }
             });
         });
@@ -599,4 +639,5 @@ $(() => {
         })
     }
     YC();
+
 })
