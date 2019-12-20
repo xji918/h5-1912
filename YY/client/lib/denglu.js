@@ -12,7 +12,9 @@ $(() => {
             dataType: "json",
             success: function (response) {
                 if (response.status == "success") {
-                    window.location.href = "./shouye.html?userid=" + response.id + "&username=" + response.username;
+                    document.cookie = "username=" + response.username;
+                    document.cookie = "userid=" + response.id;
+                    window.location.href = "./shouye.html";
                 } else {
                     alert(response.data.msg)
                 }

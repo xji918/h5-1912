@@ -1,29 +1,16 @@
 $(() => {
-    let a1 = decodeURI(window.location.search.slice(1));
-    function queryString2Obj(queryString) {
-        var o = {};
-        var arr = queryString.split("&"); //["name=zs","age=10","className=H5"];
-        arr.forEach(function (item) {
-            var data = item.split("="); //["name","zs"];
-            var key = data[0];
-            var val = data[1];
-            o[key] = val;
-        })
-        return o;
-    };
-    var arr = queryString2Obj(a1);
-    console.log(a1);
-    console.log(arr);
+
+    let username = cookieget("username");
     fn();
     function fn() {
         $.ajax({
             type: "get",
             url: "../../server/shoppingcart.php",
-            data: "type=get",
+            data: "type=get" + "&username=" + username + "&userid=" + cookieget("username"),
             dataType: "json",
             success: function (response) {
-
                 shopping.init(response);
+                console.log(username);
             }
         });
     }
@@ -77,7 +64,7 @@ $(() => {
                             $.ajax({
                                 type: "get",
                                 url: "../../server/shoppingcart2.php",
-                                data: "type=del" + "&top=" + top,
+                                data: "type=del" + "&top=" + top + "&username=" + username + "&userid=" + cookieget("username"),
                                 dataType: "json",
                                 success: function (response) {
                                     $(".main .main_bottom").remove();
@@ -90,7 +77,7 @@ $(() => {
                     $.ajax({
                         type: "get",
                         url: "../../server/shoppingcart2.php",
-                        data: "type=" + type + "&top=" + top,
+                        data: "type=" + type + "&top=" + top + "&username=" + username + "&userid=" + cookieget("username"),
                         dataType: "json",
                         success: function (response) {
                             $(".main .main_bottom").remove();
@@ -175,6 +162,34 @@ $(() => {
 
                 }
 
+            });
+            $(".bottom_left .celar").click(function () {
+                // document.querySelector("body > div.bodyer > div.main > div.main_bottom > div.number > button.btnA.clicks")
+                let celar = $("body > div.bodyer > div.main > div.checkedbg > div.number > button.btnA.clicks");
+                console.log(celar);
+
+                let top = 0;
+                let type = $(this).data("type");
+                $(".tishi").addClass("tishi_block");
+                $(".tishi_A").on("click", "span", function () {
+                    $(".tishi").removeClass("tishi_block");
+                    if ($(this).text() == "确定") {
+                        celar.each(function (index, ele) {
+                            top = $(ele).data("num")
+                            console.log(ele);
+                            $.ajax({
+                                type: "get",
+                                url: "../../server/shoppingcart2.php",
+                                data: "type=del" + "&top=" + top + "&username=" + username + "&userid=" + cookieget("username"),
+                                dataType: "json",
+                                success: function (response) {
+                                    $(".main .main_bottom").remove();
+                                    seft.init(response);
+                                }
+                            });
+                        })
+                    }
+                });
             })
         }
         css() {
@@ -186,9 +201,17 @@ $(() => {
                 $(this).toggleClass("btn_color")
             })
             $(".num1").text($(".main_bottom").length);
+            let num3 = 0;
+            let nums = 0;
+            $(".price").each(function (index, ele) {
+                num3 = $(this).parent().find(".numA").text($(ele).text() * $(this).parent().find(".inputA").val());
+                nums = num3[0].innerText * 1 + nums;
+            })
+            $(".num3").text(0)
         }
     };
     let shopping = new shoppingcart();
     //
 
 })
+

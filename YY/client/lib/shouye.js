@@ -1,20 +1,20 @@
 $(() => {
-    let a1 = decodeURI(window.location.search.slice(1));
-    function queryString2Obj(queryString) {
-        var o = {};
-        var arr = queryString.split("&"); //["name=zs","age=10","className=H5"];
-        arr.forEach(function (item) {
-            var data = item.split("="); //["name","zs"];
-            var key = data[0];
-            var val = data[1];
-            o[key] = val;
-        })
-        return o;
-    };
-    var arr = queryString2Obj(a1);
-    console.log(a1);
-    console.log(arr);
 
+    let username = cookieget("username");
+    if (username != undefined) {
+        $(".top > .wrapper .top-login p").html(username + "  欢迎您！！！" + `<a class='zhuxiao' >[ 注销 ]</a>`);
+        $(".top > .wrapper .top-login p .zhuxiao").click(function () {
+
+        });
+        $(".side_box > .user-login  img")[0].src = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2466331554,2187977111&fm=26&gp=0.jpg";
+        $(".side_box > .user-login  .userInfo").html(username + "  欢迎您！！！" + `<a class='zhuxiao' >[ 注销 ]</a>`).css("color", "#333");
+        $(".side_box > .user-login  .userInfo .zhuxiao,.top > .wrapper .top-login p .zhuxiao").click(function () {
+            $(".side_box > .user-login  img")[0].src = "https://www.yaya.cn/static/images/home/empty.png";
+            $(".side_box > .user-login  .userInfo").html(`<p>丫丫网欢迎您</p><a href="./denglu.html" class="userInfodl">登录</a>/<a href="../html/zhuce.html"class="userInfozc">注册</a>`)
+            $(".top > .wrapper .top-login p").html(`Hi，欢迎来丫丫！<a href="denglu.html" rel="nofollow">登录</a><a href="zhuce.html" rel="nofollow">免费注册</a>`);
+            cookieclear();
+        })
+    };
     //top
     $(".top-user").hover(function () {
         $(".top-user-show").slideDown();
@@ -185,7 +185,11 @@ $(() => {
         click() {
 
             $(".odl a").click(function () {
-                window.location.href = "./list.html?userid=" + arr.userid + "&username=" + arr.username;
+                window.location.href = "./list.html";
+            });
+
+            $(".header-cart .header-cart-a").click(function () {
+                window.location.href = "./shoppingcart.html";
             })
         }
     };
@@ -465,7 +469,7 @@ $(() => {
             $.ajax({
                 type: "get",
                 url: "../../server/shoppingcart3.php",
-                data: "userid=" + arr.userid + "&username=" + arr.username,
+                data: "&username=" + username,
                 dataType: "json",
                 success: function (response) {
                     let numbers = 0;
@@ -473,7 +477,7 @@ $(() => {
                         numbers = ele.num * 1 + numbers
                     });
                     $(".header-cart > .header-cart-a > span").text(numbers);
-                    $(".tool-bar > .tool-bar-menu > .tool-cart b").text(numbers)
+                    $(".tool-bar > .tool-bar-menu > .tool-cart b").text(numbers);
                 }
             });
         });

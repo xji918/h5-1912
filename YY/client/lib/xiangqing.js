@@ -1,26 +1,15 @@
 $(() => {
-    let a1 = decodeURI(window.location.search.slice(1));
-    function queryString2Obj(queryString) {
-        var o = {};
-        var arr = queryString.split("&"); //["name=zs","age=10","className=H5"];
-        arr.forEach(function (item) {
-            var data = item.split("="); //["name","zs"];
-            var key = data[0];
-            var val = data[1];
-            o[key] = val;
-        })
-        return o;
-    };
-    var arr = queryString2Obj(a1);
-    console.log(a1);
-    console.log(arr);
+
+    let username = cookieget("username");
     $.ajax({
         type: "get",
         url: "../../server/shoppingcart3.php",
-        data: "userid=" + arr.userid + "&username=" + arr.username,
+        data: "&username=" + username,
         dataType: "json",
         success: function (response) {
             $(".shoppingcartB span").text(cart(response))
+            // console.log(response);
+
         }
     });
     function cart(data) {
@@ -202,6 +191,7 @@ $(() => {
                 });
                 let top = $(this).data("top");
                 console.log(top);
+                console.log(username);
                 $.ajax({
                     type: "get",
                     url: "../../server/xiangqing1.php",
@@ -210,26 +200,24 @@ $(() => {
                     success: function (response) {
                         let fdjs2 = new Fdj(response);
                         fdjs2.init();
-
-
                     }
                 });
             });
             $(".shoppingcartB").click(function () {
-                window.location.href = "../html/shoppingcart.html?userid=" + arr.userid + "&username=" + arr.username;
+                window.location.href = "../html/shoppingcart.html";
             })
         }
     };
-    // let o = window.location.search.slice(1).split("=");
-    // let top;
-    // for (var key in o) {
-    //     top[key] = o[key]
-    // }
-    console.log(arr.top);
+    let o = window.location.search.slice(1).split("=");
+    let top;
+    for (var key in o) {
+        top = o[key]
+    }
+
     $.ajax({
         type: "get",
         url: "../../server/xiangqing1.php",
-        data: "id=" + arr.top,
+        data: "id=" + top,
         dataType: "json",
         success: function (response) {
             let fdjs = new Fdj(response);
@@ -245,16 +233,21 @@ $(() => {
         let price = $(".priceA").eq(0).text().slice(1);
         let dis = $(".xq_top > .title").eq(0).text();
         let top = $(".tab_img > img").eq(0).attr("id");
-        console.log(type);
-        console.log(top);
+        // console.log(222);
+
         $.ajax({
             type: "get",
             url: "../../server/shoppingcart2.php",
-            data: "type=" + type + "&top=" + top + "&src=" + src + "&price=" + price + "&dis=" + dis + "&userid=" + response.id + "&username=" + response.username + "userid=" + arr.userid + " &username=" + arr.username,
+            data: "type=" + type + "&top=" + top + "&username=" + username + "&src=" + src + "&price=" + price + "&dis=" + dis,
             dataType: "json",
             success: function (response) {
-                console.log(response);
+                // console.log(username);
+                // console.log(top);
+                // console.log(111);
+
                 $(".shoppingcartB span").text(cart(response))
+                // console.log(cart(response));
+
             }
         });
     })

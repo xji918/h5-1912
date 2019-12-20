@@ -8,9 +8,23 @@
     <title>Document</title>
     <link rel="stylesheet" href="../font/iconfont.css">
     <link rel="stylesheet" href="../css/shouye.css">
+    <script src="../lib/cookie.js"></script>
     <script src="../lib/jquery-3.4.1.js"></script>
     <script src="../lib/shouye.js"></script>
     <script src="../lib/bannerbgcolor.js"></script>
+    <style>
+        .top .wrapper .top-login p .zhuxiao {
+            color: #333
+        }
+
+        .top .wrapper .top-login p .zhuxiao:hover {
+            color: red;
+        }
+
+        .zhuxiao:hover {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -110,7 +124,7 @@
             </div>
             <div class="header-qrcode right">
                 <div class="header-cart">
-                    <a href="./shoppingcart.html" class="header-cart-a">
+                    <a class="header-cart-a">
                         <svg version="1.1" role="presentation" width="16" height="14.222222222222221"
                             viewBox="0 0 576 512" class="fa-icon" style="vertical-align: text-top;">
                             <path
@@ -149,7 +163,8 @@
             <div class="banner_bg_box"></div>
             <div class="side_box">
                 <div class="user-login">
-                    <div class="tximg"><a href=""><img src="https://www.yaya.cn/static/images/home/empty.png"></a></div>
+                    <div class="tximg"><a href=""><img style="width: 42px;height: 43px;"
+                                src="https://www.yaya.cn/static/images/home/empty.png"></a></div>
                     <div class="userInfo">
                         <p>丫丫网欢迎您</p>
                         <a href="./denglu.html" class="userInfodl">登录</a>/<a href="../html/zhuce.html"
